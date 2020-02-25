@@ -20,7 +20,7 @@ jobs:
       - name: Build
         env:
           GOPROXY: "https://proxy.golang.org"
-        run: go build .
+        run: 'go build -v -o ./triggy ./cmd/triggy'
 
       - name: Test
         env:
