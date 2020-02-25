@@ -21,8 +21,8 @@
   description: Size XXL
   color: 512E5F
 # Scopes
-- name: scope/Action
-  description: Scope Action
+- name: scope/Adapter
+  description: Scope Adapter
   color: F5B041
 - name: scope/Provider
   description: Scope Provider
