@@ -1,0 +1,45 @@
+# Sizes
+- color: EBDEF0
+  description: Size XXS
+  name: size/XXS
+- color: D7BDE2
+  description: Size XS
+  name: size/XS
+- color: C39BD3
+  description: Size S
+  name: size/S
+- color: 9B59B6
+  description: Size M
+  name: size/M
+- color: 884EA0
+  description: Size L
+  name: size/L
+- color: 76448A
+  description: Size XL
+  name: size/XL
+- color: 512E5F
+  description: Size XXL
+  name: size/XXL
+# Scopes
+- color: F5B041
+  description: Scope Adapter
+  name: scope/Action
+- color: F5B041
+  description: Scope Provider
+  name: scope/Provider
+- color: F5B041
+  description: Scope Trigger
+  name: scope/Trigger
+- color: F5B041
+  description: Scope Action
+  name: scope/Action
+# Types
+- color: 52BE80
+  description: New feature
+  name: type/Feature
+- color: 5DADE2
+  description: Improvements or additions to documentation
+  name: type/Documentation
+- color: EC7063
+  description: Something isn't working
+  name: type/Bug

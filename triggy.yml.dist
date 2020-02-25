@@ -1,0 +1,57 @@
+---
+
+version: '1'
+
+# ---------------------------------------------------------------------------------------
+# PROVIDERS
+# ---------------------------------------------------------------------------------------
+providers:                             # Available providers
+  rabbitmq:                            # Provider custom name
+    enabled: true                      # Provider enabled
+    adapter: rabbitmq                  # Provider adapter (eg for RabbitMQ)
+    parameters:                        # Provider specific parameters
+      host: localhost                  # RabbitMQ: host (optional, default: localhost)
+      port: 5672                       # RabbitMQ: port (optional, default: 5672)
+      username: guest                  # RabbitMQ: username (optional, default: guest)
+      password: guest                  # RabbitMQ: password (optional, default: guest)
+      vhost: /                         # RabbitMQ: virtual host (optional, default: /)
+  redis:                               # Provider custom name
+    enabled: true                      # Provider enabled
+    adapter: redis                     # Provider adapter (eg for Redis)
+    parameters:                        # Provider specific parameters
+      host: localhost                  # Redis host (optional, default: localhost)
+      port: 6379                       # Redis port (optional, default: 6379)
+      database: 0                      # Redis database (optional, default: 0)
+      password:                        # Redis password (optional, default: "")
+
+# ---------------------------------------------------------------------------------------
+# TRIGGERS
+# ---------------------------------------------------------------------------------------
+
+triggers:                              # Available triggers
+  onUserChange:                        # Trigger custom name
+    provider: rabbitmq                 # Trigger from provider
+    trigger: onMessageReceived         # Trigger type
+    parameters:                        # Trigger specific parameters
+      exchange: user                   # RabbitMQ: exchange name
+      topics:                          # RabbitMQ: topics
+        user.updated: {}
+        user.deleted:
+          queue:
+            name: custom.user.deleted  # Topic name (you can use * or # as routing key)
+            durable: true              # Queue durable (optional, default: true)
+            exclusive: false           # Queue exclusive (optional, default: false)
+            autoDelete: false          # Queue auto-delete (optional, default: false)
+    actions:                           # Actions called after triggering
+      - removeUserFromCache
+
+# ---------------------------------------------------------------------------------------
+# ACTIONS
+# ---------------------------------------------------------------------------------------
+
+actions:                               # Available actions
+  removeUserFromCache:                 # Action custom name
+    provider: redis                    # Action from provider
+    action: del                        # Action type
+    parameters:
+        key: 'users::{{ .trigger.output.json.id }}' # Key to delete

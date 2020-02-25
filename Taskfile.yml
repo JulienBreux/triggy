@@ -1,0 +1,19 @@
+# https://taskfile.dev
+
+version: '2'
+
+silent: true
+
+tasks:
+  'app:build':
+    desc: 'Build app'
+    cmds:
+      - 'go build -v -o ./triggy ./cmd/triggy'
+  'app:test':
+    desc: 'Test app'
+    cmds:
+      - 'go test ./...'
+  'image:build':
+    desc: 'Build image'
+    cmds:
+      - 'docker build --no-cache -t triggy:latest .'
