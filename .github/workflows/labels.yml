@@ -3,7 +3,7 @@ name: Labels
 on:
   push:
     paths:
-    - '.github/labels/labels.md'
+    - '.github/labels/*.yml'
 
 jobs:
   save-labels:
