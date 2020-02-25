@@ -35,7 +35,10 @@
   color: F5B041
 # Types
 - name: type/Feature
-  description: New feature
+  description: New feature request
+  color: 52BE80
+- name: 'type/Feature Request'
+  description: New feature request
   color: 52BE80
 - name: type/Documentation
   description: Improvements or additions to documentation
