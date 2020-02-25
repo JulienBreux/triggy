@@ -1,4 +1,4 @@
-name: Labels
+name: Update repo labels
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
     - '.github/labels/*.yml'
 
 jobs:
-  save-labels:
+  update:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
