@@ -1,6 +1,16 @@
 name: Build and test Go
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+    - '.github/**'
+    - 'docs/**'
+    paths:
+    - '**.go'
+  pull_request:
+    paths-ignore:
+    - '.github/**'
+    - 'docs/**'
 
 jobs:
   build:

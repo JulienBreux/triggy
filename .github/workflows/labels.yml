@@ -1,6 +1,9 @@
 name: Labels
 
-on: [push]
+on:
+  push:
+    paths:
+    - '.github/labels/*.md'
 
 jobs:
   save-labels:
