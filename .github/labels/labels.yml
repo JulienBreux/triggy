@@ -1,45 +1,45 @@
 # Sizes
-- color: EBDEF0
+- name: size/XXS
   description: Size XXS
-  name: size/XXS
-- color: D7BDE2
+  color: EBDEF0
+- name: size/XS
+  color: D7BDE2
   description: Size XS
-  name: size/XS
-- color: C39BD3
+- name: size/S
   description: Size S
-  name: size/S
-- color: 9B59B6
+  color: C39BD3
+- name: size/M
   description: Size M
-  name: size/M
-- color: 884EA0
+  color: 9B59B6
+- name: size/L
   description: Size L
-  name: size/L
-- color: 76448A
+  color: 884EA0
+- name: size/XL
   description: Size XL
-  name: size/XL
-- color: 512E5F
+  color: 76448A
+- name: size/XXL
   description: Size XXL
-  name: size/XXL
+  color: 512E5F
 # Scopes
-- color: F5B041
-  description: Scope Adapter
-  name: scope/Action
-- color: F5B041
-  description: Scope Provider
-  name: scope/Provider
-- color: F5B041
-  description: Scope Trigger
-  name: scope/Trigger
-- color: F5B041
+- name: scope/Action
   description: Scope Action
-  name: scope/Action
+  color: F5B041
+- name: scope/Provider
+  description: Scope Provider
+  color: F5B041
+- name: scope/Trigger
+  description: Scope Trigger
+  color: F5B041
+- name: scope/Action
+  description: Scope Action
+  color: F5B041
 # Types
-- color: 52BE80
+- name: type/Feature
   description: New feature
-  name: type/Feature
-- color: 5DADE2
+  color: 52BE80
+- name: type/Documentation
   description: Improvements or additions to documentation
-  name: type/Documentation
-- color: EC7063
+  color: 5DADE2
+- name: type/Bug
   description: Something isn't working
-  name: type/Bug
+  color: EC7063
