@@ -1,9 +1,9 @@
-name: Default
+name: Labels
 
 on: [push]
 
 jobs:
-  build:
+  save-labels:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
