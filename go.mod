@@ -3,6 +3,7 @@ module github.com/julienbreux/triggy
 go 1.13
 
 require (
+	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/logrusorgru/aurora v0.0.0-20200102142835-e9ef32dff381
 	github.com/rs/zerolog v1.18.0
 	github.com/spf13/cobra v0.0.5
