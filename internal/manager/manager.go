@@ -18,7 +18,10 @@ type mngr struct {
 
 // New creates a new manager instance
 func New(t *triggy.Triggy, c *config.Config) Manager {
-	return &mngr{}
+	return &mngr{
+		t: t,
+		c: c,
+	}
 }
 
 // Start starts the manager
