@@ -2,6 +2,10 @@ package logger
 
 import "github.com/rs/zerolog"
 
+func init() {
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+}
+
 // ParseLevel converts string level to Zerolog level
 func ParseLevel(level string) zerolog.Level {
 	switch level {
