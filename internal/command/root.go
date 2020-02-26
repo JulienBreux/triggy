@@ -5,8 +5,11 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/julienbreux/triggy/internal/config"
+	"github.com/julienbreux/triggy/internal/manager"
+	"github.com/julienbreux/triggy/internal/triggy/read"
 	"github.com/julienbreux/triggy/pkg/logger"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -50,8 +53,9 @@ func rootRun(cmd *cobra.Command, args []string) {
 		subLog.Error().Err(err).Msg("Unable to load environment variable")
 		os.Exit(1)
 	}
-	subLog.Info().Msg("Environment variables loaded")
-
+	if c.LoggerFormat == "text" {
+		subLog = subLog.Output(zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339})
+	}
 	// Init logger
 	zerolog.SetGlobalLevel(logger.ParseLevel(c.LoggerLevel))
 	if c.Debug {
@@ -59,9 +63,19 @@ func rootRun(cmd *cobra.Command, args []string) {
 		subLog.Debug().Msg("Debug mode enabled")
 	}
 
+	subLog.Debug().RawJSON("config", c.JSON()).Msg("Environment variables loaded")
+
+	// Load configuration file
+	t, err := read.Triggy(c.ConfigPath, c.ConfigFile)
+	if err != nil {
+		subLog.Fatal().Err(err).Msgf("Unable to read %s file on path %s", c.ConfigFile, c.ConfigPath)
+	}
+	subLog.Debug().RawJSON("config", t.JSON()).Msg("Configuration file loaded")
+
 	// Start Triggy :)
 	subLog.Info().Msg("Starting Triggy...")
-	// TODO: Start all processes
+	mngr := manager.New(t, c)
+	mngr.Start()
 	subLog.Info().Msg("Triggy started")
 
 	// Stop Triggy :(
@@ -69,6 +83,6 @@ func rootRun(cmd *cobra.Command, args []string) {
 	signal.Notify(ch, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL)
 	subLog.Info().Str("reason", fmt.Sprintf("%s", <-ch)).Msg("Stopping Triggy...")
 
-	// TODO: Stop all processes
+	mngr.Stop()
 	subLog.Info().Msg("Triggy stopped")
 }

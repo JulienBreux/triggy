@@ -14,7 +14,7 @@ import (
 func Triggy(dir string, entrypoint string) (*triggy.Triggy, error) {
 	path := filepath.Join(dir, entrypoint)
 	if _, err := os.Stat(path); err != nil {
-		return nil, fmt.Errorf(`triggy: No triggy.yml file found on "%s". Use "triggy --init" to create a new one`, path)
+		return nil, fmt.Errorf(`triggy: No '%s' file found on '%s'`, entrypoint, dir)
 	}
 	return readTriggy(path)
 }

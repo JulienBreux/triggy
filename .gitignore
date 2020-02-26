@@ -1,2 +1,8 @@
 # Binary
 /triggy
+
+# Env
+.env
+
+# Config
+triggy.yml

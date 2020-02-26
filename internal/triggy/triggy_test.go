@@ -64,3 +64,9 @@ parameters:
 		assert.Equal(t, test.expected, test.value)
 	}
 }
+
+func TestJSON(t *testing.T) {
+	tgy := triggy.Triggy{Version: "1.0"}
+
+	assert.Contains(t, string(tgy.JSON()), "Version\":\"1.0")
+}

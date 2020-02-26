@@ -1,6 +1,8 @@
 package config
 
 import (
+	"encoding/json"
+
 	"github.com/kelseyhightower/envconfig"
 )
 
@@ -8,7 +10,17 @@ import (
 type Config struct {
 	Debug bool `default:"false"`
 
-	LoggerLevel string `default:"info" envconfig:"logger_level"`
+	LoggerLevel  string `default:"info" envconfig:"logger_level"`
+	LoggerFormat string `default:"json" envconfig:"logger_format"`
+
+	ConfigPath string `default:"./" envconfig:"config_path"`
+	ConfigFile string `default:"triggy.yml" envconfig:"config_file"`
+}
+
+// JSON exports configuration as JSON
+func (c *Config) JSON() []byte {
+	b, _ := json.Marshal(c)
+	return b
 }
 
 // New returns the configuration
