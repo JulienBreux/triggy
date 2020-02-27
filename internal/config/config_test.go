@@ -20,6 +20,6 @@ func TestNew(t *testing.T) {
 func TestJSON(t *testing.T) {
 	c, err := config.New()
 
-	assert.Contains(t, string(c.JSON()), "LoggerLevel\":\"info")
+	assert.Contains(t, string(c.JSON()), "\"Debug\":false")
 	assert.NoError(t, err)
 }
